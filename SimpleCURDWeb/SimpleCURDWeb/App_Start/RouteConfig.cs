@@ -16,7 +16,7 @@ namespace SimpleCURDWeb
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "AddressTypes", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Teacher", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

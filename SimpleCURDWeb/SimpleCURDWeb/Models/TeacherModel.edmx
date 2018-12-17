@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TeacherModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'ch9_DB.dbo.老師資料表' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="老師資料表">
+          <Key>
+            <PropertyRef Name="老師編號" />
+          </Key>
+          <Property Name="老師編號" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="老師姓名" Type="nvarchar" MaxLength="8" />
+          <Property Name="研究領域" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="TeacherModelStoreContainer">
+          <EntitySet Name="老師資料表" EntityType="Self.老師資料表" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [老師資料表].[老師編號] AS [老師編號], 
+    [老師資料表].[老師姓名] AS [老師姓名], 
+    [老師資料表].[研究領域] AS [研究領域]
+    FROM [dbo].[老師資料表] AS [老師資料表]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TeacherModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="老師資料表">
+          <Key>
+            <PropertyRef Name="老師編號" />
+          </Key>
+          <Property Name="老師編號" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="老師姓名" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="研究領域" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="TeacherEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="老師資料表" EntityType="Self.老師資料表" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TeacherModelStoreContainer" CdmEntityContainer="TeacherEntities">
+          <EntitySetMapping Name="老師資料表">
+            <EntityTypeMapping TypeName="TeacherModel.老師資料表">
+              <MappingFragment StoreEntitySet="老師資料表">
+                <ScalarProperty Name="老師編號" ColumnName="老師編號" />
+                <ScalarProperty Name="老師姓名" ColumnName="老師姓名" />
+                <ScalarProperty Name="研究領域" ColumnName="研究領域" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
